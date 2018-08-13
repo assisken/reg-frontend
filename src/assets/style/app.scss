@@ -1,0 +1,80 @@
+// Bootstrap imports
+// Required
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+
+// Optional
+@import '~bootstrap/scss/alert';
+@import '~bootstrap/scss/buttons';
+@import '~bootstrap/scss/button-group';
+@import '~bootstrap/scss/code';
+@import '~bootstrap/scss/dropdown';
+@import '~bootstrap/scss/forms';
+@import '~bootstrap/scss/grid';
+@import '~bootstrap/scss/list-group';
+@import '~bootstrap/scss/nav';
+@import '~bootstrap/scss/navbar';
+@import '~bootstrap/scss/reboot';
+@import '~bootstrap/scss/type';
+@import '~bootstrap/scss/utilities';
+
+$blue: #006ddb;
+
+body {
+  background-color: $blue;
+  height: 100vh;
+}
+
+#app {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  color: #2c3e50;
+  height: 100vh;
+}
+
+.page-width {
+  max-width: 1200px;
+}
+
+.hor-center {
+  margin: 0 auto;
+}
+
+.vert-center {
+  margin: 25vh auto 0;
+}
+
+.form {
+  padding: 10px;
+  width: 500px;
+  margin: 0 auto;
+  border-radius: 0.3rem;
+}
+
+main {
+  padding: 0.7rem;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition-duration: 0.3s;
+  transition-property: opacity;
+  transition-timing-function: ease;
+}
+
+.fade-enter,
+.fade-leave-active,
+.fade-footer-enter,
+.fade-footer-leave-active {
+  opacity: 0;
+}
+
+.fade-footer-enter-active,
+.fade-footer-leave-active {
+  transition-duration: 0.2s;
+  transition-property: height, opacity;
+  transition-timing-function: ease;
+  overflow: hidden;
+}
