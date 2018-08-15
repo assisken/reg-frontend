@@ -21,12 +21,11 @@ export default {
   },
   created () {
     this.items = [
-      { name: 'Email', value: this.user.email }
+      { name: 'ФИО', value: this.user.family_name + ' ' + this.user.given_name + ' ' + this.user.middle_name },
+      { name: 'Дата рождения', value: this.user.birthdate },
+      { name: 'Email', value: this.user.email },
+      { name: 'Домен', value: this.user.linux_user + '.mati.su' }
     ]
   }
 }
 </script>
-
-<style lang="sass" scoped>
-
-</style>

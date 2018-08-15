@@ -4,7 +4,15 @@
       <div class="text-center profile-nav">
         <img class="rounded-circle img-thumbnail" :src="'https://confid.ru/data/avatars/' +user.picture" />
         <div class="list-group">
-          <router-link v-for="link in links" @click.native="selected = link.id" :class="{ active: link.id === selected }" :key="link.id" :to="link.to" class="list-group-item">{{ link.content }}</router-link>
+          <router-link
+          v-for="link in links"
+          @click.native="selected = link.id"
+          :class="{ active: link.id === selected }"
+          :key="link.id"
+          :to="link.to"
+          class="list-group-item">
+            {{ link.content }}
+          </router-link>
         </div>
         <div class="list-group">
           <router-link :to="{ name: 'LogoutPage' }" class="list-group-item">Выход</router-link>
@@ -22,13 +30,13 @@ export default {
   name: 'ProfilePage',
   data () {
     return {
-      str: localStorage.user,
       user: JSON.parse(localStorage.user),
       selected: 1,
       prevHeight: 0,
       links: [
         { id: 1, name: 'instruction', content: 'Инструкция', to: { name: 'InstructionPage' } },
-        { id: 2, name: 'about', content: 'О себе', to: { name: 'AboutPage' } }
+        { id: 2, name: 'about', content: 'О себе', to: { name: 'AboutPage' } },
+        { id: 3, name: 'control_panel', content: 'Управление', to: { name: 'ControlPanelPage' } }
       ]
     }
   },
@@ -52,35 +60,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.profile-nav {
-  flex: 0 0 20%;
-  max-width: 20%;
-}
-.profile-content {
-  .key,
-  .value {
-    display: inline;
-  }
-  padding: 1rem 0;
-}
-.profile {
-  div:first-child {
-    padding-right: 20px;
-  }
-  img {
-    height: auto;
-    width: 160px;
-    margin-bottom: 0.5rem;
-  }
-  .list-group {
-    margin: 0.6rem 0.25rem;
-  }
-  .list-group-item {
-    padding: 0.5rem;
-  }
-  pre {
-    display: inline;
-    margin: 0;
-  }
-}
+@import '../../assets/style/profile';
 </style>

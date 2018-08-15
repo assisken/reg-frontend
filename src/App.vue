@@ -3,12 +3,18 @@
     <transition name="fade" mode="out-in">
       <router-view/>
     </transition>
+    <notification-container ref="notify"/>
   </div>
 </template>
 
 <script>
+import NotificationContainer from '@/components/NotificationContainer'
+
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    NotificationContainer
+  }
 }
 </script>
 

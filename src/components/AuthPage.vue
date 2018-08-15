@@ -15,13 +15,16 @@ export default {
     }
   },
   mounted () {
+    if (this.code === undefined) {
+      this.goLogin()
+    }
     new Promise((resolve, reject) => this.getUser(resolve, reject))
       .then(res => {
         console.log(res)
         localStorage.user = JSON.stringify(res)
         this.$router.push({ name: 'InstructionPage' })
       })
-      .catch(() => this.goLogin())
+      // .catch(() => this.goLogin())
   },
   methods: {
     goLogin () {
@@ -30,7 +33,7 @@ export default {
     },
     async getToken () {
       let resp = await this.$http.post('/api/login/', 'code=' + this.code)
-        .catch(() => this.goLogin())
+        .catch(() => {})
       localStorage.token = resp.data.token
       return resp.data.token
     },

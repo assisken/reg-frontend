@@ -1,0 +1,31 @@
+.profile-nav {
+  flex: 0 0 20%;
+  max-width: 20%;
+}
+.profile-content {
+  .key,
+  .value {
+    display: inline;
+  }
+  padding: 1rem 0;
+}
+.profile {
+  div:first-child {
+    padding-right: 20px;
+  }
+  img {
+    height: auto;
+    width: 160px;
+    margin-bottom: 0.5rem;
+  }
+  .list-group {
+    margin: 0.6rem 0.25rem;
+  }
+  .list-group-item {
+    padding: 0.5rem;
+  }
+  pre {
+    display: inline;
+    margin: 0;
+  }
+}

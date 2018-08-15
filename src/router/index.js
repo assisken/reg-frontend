@@ -10,6 +10,7 @@ import AuthPage from '@/components/AuthPage'
 import ProfilePage from '@/components/profile/ProfilePage'
 import AboutPage from '@/components/profile/AboutPage'
 import InstructionPage from '@/components/profile/InstructionPage'
+import ControlPanelPage from '@/components/profile/ControlPanelPage'
 
 Vue.use(Router)
 
@@ -29,6 +30,11 @@ export default new Router({
           path: 'instruction',
           name: 'InstructionPage',
           component: InstructionPage
+        },
+        {
+          path: 'control',
+          name: 'ControlPanelPage',
+          component: ControlPanelPage
         }
       ]
     }
