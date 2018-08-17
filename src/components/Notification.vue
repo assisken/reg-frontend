@@ -1,7 +1,7 @@
 <template>
   <transition name="slide-fade">
     <div v-if="visible" class="alert" :class="[type]" @click="destroy">
-      {{ text }}
+      <p v-for="t in text" :key="t">{{ t }}</p>
     </div>
   </transition>
 </template>
@@ -11,7 +11,7 @@ export default {
   name: 'Notification',
   props: {
     id: { default: 1, type: Number },
-    text: { default: '', type: String },
+    text: { default () { return [] }, type: Array },
     _type: { default: 'success', type: String },
     visible: { default: true, type: Boolean }
   },
@@ -41,5 +41,9 @@ export default {
 .slide-fade-leave-to {
   transform: translateY(-20px);
   opacity: 0;
+}
+
+p {
+  margin-bottom: 0;
 }
 </style>

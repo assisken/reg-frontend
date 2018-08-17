@@ -3,13 +3,13 @@
     <h4>Инструкция</h4>
     <hr>
     <p>
-    Спасибо, что пользуетесь нашим приложением для своего сайта.<br>
-    Ваш сайт доступен по адресу
-    <!-- <a href="http://{{ user.linux_user }}.{{ domain }}" target="_blank">{{ user.linux_user }}.{{ domain }}</a>.<br> -->
+      Спасибо, что пользуетесь нашим приложением для своего сайта.<br>
+      Ваш сайт доступен по адресу
+    <a :href="'http://' + user.linux_user + '.' + domain" target="_blank">{{ user.linux_user }}.{{ domain }}</a>.
     </p>
     <p>
-    Пока на нём пусто, потому что он не настроен. Чтобы настроить его, следуйте следующей инструкции,
-    соответствующей вашей операционной системе:
+      Пока на нём пусто, потому что он не настроен. Чтобы настроить его, следуйте следующей инструкции,
+      соответствующей вашей операционной системе:
     </p>
     <h5>Windows</h5>
     <hr>
@@ -34,11 +34,14 @@ scp -r <i>путь_к_сайту</i> ssh://{{ user.linux_user }}@{{ domain }}:/h
 </template>
 
 <script>
+import { domain } from '@/config'
+
 export default {
   name: 'InstructionPage',
   data () {
     return {
-      user: localStorage.user
+      user: JSON.parse(localStorage.user),
+      domain: domain
     }
   }
 }

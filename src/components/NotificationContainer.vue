@@ -13,7 +13,7 @@ export default {
     Notification
   },
   created () {
-    bus.$on('add-notification', text => this.addNotification(text))
+    bus.$on('add-notification', data => this.addNotification(data))
   },
   methods: {
     addNotification ({ type, text }) {

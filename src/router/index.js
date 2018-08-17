@@ -8,7 +8,6 @@ import LogoutPage from '@/components/LogoutPage'
 import AuthPage from '@/components/AuthPage'
 
 import ProfilePage from '@/components/profile/ProfilePage'
-import AboutPage from '@/components/profile/AboutPage'
 import InstructionPage from '@/components/profile/InstructionPage'
 import ControlPanelPage from '@/components/profile/ControlPanelPage'
 
@@ -24,15 +23,15 @@ export default new Router({
     {
       path: '/profile',
       component: ProfilePage,
+      redirect: { name: 'InstructionPage' },
       children: [
-        { path: 'about', name: 'AboutPage', component: AboutPage },
         {
           path: 'instruction',
           name: 'InstructionPage',
           component: InstructionPage
         },
         {
-          path: 'control',
+          path: 'settings',
           name: 'ControlPanelPage',
           component: ControlPanelPage
         }

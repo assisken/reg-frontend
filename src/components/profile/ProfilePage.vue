@@ -35,12 +35,27 @@ export default {
       prevHeight: 0,
       links: [
         { id: 1, name: 'instruction', content: 'Инструкция', to: { name: 'InstructionPage' } },
-        { id: 2, name: 'about', content: 'О себе', to: { name: 'AboutPage' } },
-        { id: 3, name: 'control_panel', content: 'Управление', to: { name: 'ControlPanelPage' } }
+        { id: 2, name: 'control_panel', content: 'Настройки', to: { name: 'ControlPanelPage' } }
       ]
     }
   },
+  beforeMount () {
+    this.activateNav()
+  },
   methods: {
+    activateNav () {
+      let current = this.$route.name
+      var link
+      for (var i = 0; i < this.links.length; i++) {
+        link = this.links[i]
+        if (link.to.name === current) {
+          this.selected = link.id
+          break
+        }
+      }
+    },
+
+    // Animation
     beforeLeave (element) {
       this.prevHeight = getComputedStyle(element).height
     },
