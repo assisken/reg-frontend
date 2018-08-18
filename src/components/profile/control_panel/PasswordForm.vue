@@ -19,6 +19,7 @@
 
 <script>
 import { bus } from '@/eventBus'
+import { mapState } from 'vuex'
 
 export default {
   name: 'PasswordForm',
@@ -29,6 +30,11 @@ export default {
       db_password: '',
       db_password_cnf: ''
     }
+  },
+  computed: {
+    ...mapState({
+      token: state => state.token.value
+    })
   },
   methods: {
     checkPasswords (e) {
@@ -46,7 +52,7 @@ export default {
       let form = new FormData()
       if (this.linux_password) form.append('linux_password', this.linux_password)
       if (this.db_password) form.append('db_password', this.db_password)
-      let token = localStorage.token
+      let token = this.token
       this.$http.patch('/api/profile/', form, { headers: { Authorization: 'Token ' + token, 'Content-Type': 'multipart/form-data' } })
         .then(_ => bus.$emit('add-notification', { type: 'success', text: ['Успех!'] }))
     }

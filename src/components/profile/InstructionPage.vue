@@ -35,14 +35,19 @@ scp -r <i>путь_к_сайту</i> ssh://{{ user.linux_user }}@{{ domain }}:/h
 
 <script>
 import { domain } from '@/config'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'InstructionPage',
   data () {
     return {
-      user: JSON.parse(localStorage.user),
       domain: domain
     }
+  },
+  computed: {
+    ...mapGetters({
+      user: 'user/getUser'
+    })
   }
 }
 </script>

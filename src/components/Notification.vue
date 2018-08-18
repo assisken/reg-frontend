@@ -46,4 +46,8 @@ export default {
 p {
   margin-bottom: 0;
 }
+
+.alert {
+  max-width: 30rem;
+}
 </style>

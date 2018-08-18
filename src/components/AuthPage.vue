@@ -4,44 +4,42 @@
 
 <script>
 import utils from '@/utils/login'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   name: 'AuthPage',
   data () {
     return {
       code: this.$route.query.code,
-      state: this.$route.query.state,
-      token: null
+      state: this.$route.query.state
     }
+  },
+  computed: {
+    ...mapState({
+      token: state => state.token.value
+    })
   },
   mounted () {
-    if (this.code === undefined) {
-      this.goLogin()
-    }
-    new Promise((resolve, reject) => this.getUser(resolve, reject))
-      .then(res => {
-        console.log(res)
-        localStorage.user = JSON.stringify(res)
-        this.$router.push({ name: 'InstructionPage' })
-      })
-      // .catch(() => this.goLogin())
+    if (this.code === undefined) this.goLogin()
+    new Promise(resolve => this.doThings(resolve))
+      .then(_ => this.$router.push({ name: 'InstructionPage' }))
+      .catch(_ => this.goLogin())
   },
   methods: {
+    ...mapActions({
+      getUser: 'user/getUser',
+      getToken: 'token/getToken'
+    }),
     goLogin () {
       let url = utils.login()
       window.location.href = url
     },
-    async getToken () {
-      let resp = await this.$http.post('/api/login/', 'code=' + this.code)
-        .catch(() => {})
-      localStorage.token = resp.data.token
-      return resp.data.token
-    },
-    async getUser (resolve, reject) {
-      let token = await this.getToken()
-      await this.$http.get('/api/profile/', { headers: { Authorization: 'Token ' + token } })
-        .then(resp => resolve(resp.data))
-        .catch(err => reject(err))
+    async doThings (resolve) {
+      let code = this.code
+      await this.getToken({ code })
+      let token = this.token
+      await this.getUser({ token })
+      resolve()
     }
   }
 }

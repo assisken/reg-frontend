@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import HelloWorld from '@/components/HelloWorld'
-// import AuthPage from '@/components/AuthPage'
+
 import IndexPage from '@/components/IndexPage'
 import LoginPage from '@/components/LoginPage'
 import LogoutPage from '@/components/LogoutPage'

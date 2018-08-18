@@ -4,9 +4,9 @@
     <hr>
     <h5>Пароли</h5>
     <password-form/>
-    <!-- <br> -->
-    <!-- <h5>Базы данных</h5> -->
-    <!-- <db-create-form/> -->
+    <br>
+    <h5>Базы данных</h5>
+    <db-create-form/>
   </div>
 </template>
 

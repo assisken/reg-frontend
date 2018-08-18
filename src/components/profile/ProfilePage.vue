@@ -2,7 +2,7 @@
   <main class="hor-center page-width bg-light">
     <div class="profile row no-gutters text-dark">
       <div class="text-center profile-nav">
-        <img class="rounded-circle img-thumbnail" :src="'https://confid.ru/data/avatars/' +user.picture" />
+        <img class="rounded-circle img-thumbnail" :src="'https://confid.ru/data/avatars/' + user.picture" />
         <div class="list-group">
           <router-link
           v-for="link in links"
@@ -26,11 +26,12 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'ProfilePage',
   data () {
     return {
-      user: JSON.parse(localStorage.user),
       selected: 1,
       prevHeight: 0,
       links: [
@@ -38,6 +39,11 @@ export default {
         { id: 2, name: 'control_panel', content: 'Настройки', to: { name: 'ControlPanelPage' } }
       ]
     }
+  },
+  computed: {
+    ...mapGetters({
+      user: 'user/getUser'
+    })
   },
   beforeMount () {
     this.activateNav()

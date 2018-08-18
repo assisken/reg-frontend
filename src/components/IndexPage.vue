@@ -15,17 +15,18 @@
 
 <script>
 import utils from '../utils/login'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'IndexPage',
-  data () {
-    return {
-      user: localStorage.user
-    }
+  computed: {
+    ...mapGetters({
+      hasUser: 'user/isInitialized'
+    })
   },
   methods: {
     login () {
-      if (this.user) {
+      if (this.hasUser) {
         this.$router.push({ name: 'InstructionPage' })
       } else {
         let url = utils.login()
