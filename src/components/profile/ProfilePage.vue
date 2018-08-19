@@ -1,5 +1,11 @@
 <template>
   <main class="hor-center page-width bg-light">
+    <div v-if="!user.email_verified" class="alert alert-danger email-alert">
+      <p>Необходимо подтвердить почту на
+      <a href="https://confid.ru">confid.ru</a>.
+      В противном случае некоторый функционал будет недоступен.</p>
+      <p>Если вы подтвердили вашу почту, но продолжаете видеть это сообщение — нажмите на кнопку "Выход" и войдите снова.</p>
+    </div>
     <div class="profile row no-gutters text-dark">
       <div class="text-center profile-nav">
         <img class="rounded-circle img-thumbnail" :src="'https://confid.ru/data/avatars/' + user.picture" />
@@ -19,7 +25,7 @@
         </div>
       </div>
         <transition name="fade-footer" mode="out-in" @beforeLeave="beforeLeave" @enter="enter" @afterEnter="afterEnter">
-          <router-view class="profile-content col-md-9"/>
+          <router-view v-if="user.email_verified" class="profile-content col-md-9"/>
         </transition>
     </div>
   </main>

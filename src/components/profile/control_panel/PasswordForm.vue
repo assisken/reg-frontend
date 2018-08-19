@@ -54,7 +54,8 @@ export default {
       if (this.db_password) form.append('db_password', this.db_password)
       let token = this.token
       this.$http.patch('/api/profile/', form, { headers: { Authorization: 'Token ' + token, 'Content-Type': 'multipart/form-data' } })
-        .then(_ => bus.$emit('add-notification', { type: 'success', text: ['Успех!'] }))
+        .then(_ => bus.$emit('add-notification', { type: 'success', text: ['Пароль успешно установлен.'] }))
+        .catch(_ => bus.$emit('add-notification', { type: 'success', text: ['Во время выполнения произошла ошибка.', 'Попробуйте позже.'] }))
     }
   }
 }
