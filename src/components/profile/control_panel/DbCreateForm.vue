@@ -6,7 +6,7 @@
     </form>
     <div class="container">
       <transition-group name="fade" mode="out-in">
-        <div v-for="(db, index) in dbs" :key="index" class="row">
+        <div v-for="(db, index) in dbs" :key="db.id" class="row">
           <span class="col align-middle">{{ db.pname }}</span>
           <button @click="removeDb(db, index)" class="btn btn-danger col">Удалить</button>
         </div>
@@ -35,7 +35,7 @@ export default {
       token: state => state.token.value
     })
   },
-  beforeMount () {
+  created () {
     new Promise((resolve, reject) => this.getDbs(resolve, reject))
       .then(res => { this.dbs = res })
   },
@@ -58,16 +58,21 @@ export default {
         })
         .catch(err => {
           let errors = []
-          for (let key of Object.keys(err.response.data)) {
-            errors.push(err.response.data[key][0])
+          console.log(err.response.headers['content-type'])
+          if (err.response.headers['content-type'] === 'application/json') {
+            for (let key of Object.keys(err.response.data)) {
+              errors.push(err.response.data[key][0])
+            }
+          } else {
+            errors.push('Произошла непредвиденная ошибка.')
+            errors.push('¯\\_(ツ)_/¯')
           }
           bus.$emit('add-notification', { type: 'danger', text: errors })
         })
     },
     removeDb (db, index) {
       let token = this.token
-      // let data = JSON.stringify(db)
-      this.$http.delete('/api/profile/db/' + db.pname + '/', { headers: { Authorization: 'Token ' + token, 'Content-Type': 'application/json' } })
+      this.$http.delete('/api/profile/db/' + db.id + '/', { headers: { Authorization: 'Token ' + token, 'Content-Type': 'application/json' } })
         .then(_ => {
           this.dbs.splice(index, 1)
           bus.$emit('add-notification', { type: 'success', text: ['База данных ' + db.pname + ' успешно удалена.'] })
