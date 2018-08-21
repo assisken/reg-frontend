@@ -1,16 +1,27 @@
 <template>
   <div>
-    <form @submit="createDb">
-      <input v-model="newDbName" placeholder="Введите имя новой бд...">
-      <input type="submit" value="Добавить" class="btn btn-primary">
-    </form>
-    <div class="container">
-      <transition-group name="fade" mode="out-in">
-        <div v-for="(db, index) in dbs" :key="db.id" class="row">
-          <span class="col align-middle">{{ db.pname }}</span>
-          <button @click="removeDb(db, index)" class="btn btn-danger col">Удалить</button>
+    <form @submit="createDb" class="mb-2 col col-sm-8">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text">{{ user.linux_user }}_</div>
         </div>
-      </transition-group>
+        <input v-model="newDbName" class="form-control" placeholder="Имя новой бд">
+        <div class="input-group-append">
+          <input type="submit" value="Добавить" class="btn btn-primary">
+        </div>
+      </div>
+    </form>
+    <div class="col col-sm-8">
+      <ul class="list-group">
+        <transition-group name="fade" mode="out-in">
+          <li v-for="(db, index) in dbs" :key="db.id" class="list-group-item">
+            {{ db.pname }}
+            <div class="button-group float-right" style="margin-top: -7px;">
+              <button @click="removeDb(db, index)" class="btn btn-md btn-danger" ><font-awesome-icon icon="times"/></button>
+            </div>
+          </li>
+        </transition-group>
+      </ul>
     </div>
   </div>
 </template>
@@ -86,26 +97,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-div.container {
-  margin: 0;
-  max-width: 20rem;
-
-  span.col {
-    max-width: 13rem;
-    vertical-align: middle;
-  }
-
-  button.col {
-    max-width: 6rem;
-  }
-
-  .row {
-    padding: 0.2rem 0;
-    margin-top: 0.2rem;
-
-    &:hover {
-      background-color: rgba(0, 0, 0, 0.2);
-    }
-  }
-}
 </style>

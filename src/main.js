@@ -6,7 +6,17 @@ import router from './router'
 import store from './store'
 import axios from 'axios'
 
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
 Vue.prototype.$http = axios
+Vue.config.productionTip = false
+
+library.add(faTimes)
+
+Vue.component('font-awesome-icon', FontAwesomeIcon)
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

@@ -11,8 +11,8 @@
 </template>
 
 <script>
-import PasswordForm from './control_panel/PasswordForm'
-import DbCreateForm from './control_panel/DbCreateForm'
+import PasswordForm from '@/components/forms/PasswordForm'
+import DbCreateForm from '@/components/forms/DbCreateForm'
 
 export default {
   name: 'ControlPanelPage',

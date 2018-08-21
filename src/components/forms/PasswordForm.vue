@@ -1,19 +1,17 @@
 <template>
-  <form class="container" autocomplete="off" @submit="checkPasswords" action="/api/profile">
+  <form autocomplete="off" @submit="checkPasswords" action="/api/profile">
     <input type="hidden" name="_method" value="PUT">
-    <div class="row">
-      <label class="col">Пароль от аккаунта:</label>
-      <input class="col" v-model="linux_password" name="linux_password" type="password" placeholder="Введите новый пароль..."/>
-      <input class="col" v-model="linux_password_cnf" name="linux_password_cnf" type="password" placeholder="Подтвердите пароль..."/>
+    <label>Пароль от аккаунта</label>
+    <div class="input-group mb-3">
+      <input class="form-control" v-model="linux_password" name="linux_password" type="password" placeholder="Введите новый пароль"/>
+      <input class="form-control" v-model="linux_password_cnf" name="linux_password_cnf" type="password" placeholder="Подтвердите пароль"/>
     </div>
-    <div class="row">
-      <label class="col">Пароль от баз данных:</label>
-      <input class="col" v-model="db_password" name="db_password" type="password" placeholder="Введите новый пароль..."/>
-      <input class="col" v-model="db_password_cnf" name="db_password_cnf" type="password" placeholder="Подтвердите пароль..."/>
+    <label>Пароль от баз данных:</label>
+    <div class="input-group mb-3">
+      <input class="form-control" v-model="db_password" name="db_password" type="password" placeholder="Введите новый пароль"/>
+      <input class="form-control" v-model="db_password_cnf" name="db_password_cnf" type="password" placeholder="Подтвердите пароль"/>
     </div>
-    <div class="row">
-      <input class="btn btn-primary" type="submit" value="Сохранить"/>
-    </div>
+    <input class="btn btn-primary" type="submit" value="Сохранить"/>
   </form>
 </template>
 
@@ -62,20 +60,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-form.container {
-  margin: 0;
-
-  label.col {
-    max-width: 13rem;
-  }
-
-  input.col {
-    margin-right: 1.5rem;
-    max-width: 15rem;
-  }
-
-  .row {
-    margin-top: 0.5rem;
-  }
-}
 </style>
