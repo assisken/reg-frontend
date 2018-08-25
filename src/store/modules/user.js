@@ -11,6 +11,15 @@ const getters = {
   },
   isInitialized (state) {
     return state.initialized
+  },
+  blocked (state) {
+    return state.object.email_verified === false
+  },
+  register (state, getters) {
+    return (
+      !getters.blocked &&
+      (state.object.linux_user === null || state.object.linux_user === '')
+    )
   }
 }
 
@@ -18,6 +27,9 @@ const mutations = {
   initialize (state, { user }) {
     state.object = user
     state.initialized = true
+  },
+  merge (state, { data }) {
+    state.object = { ...state.object, ...data }
   },
   logout (state) {
     state.object = {}

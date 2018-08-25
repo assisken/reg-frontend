@@ -4,7 +4,7 @@
 
 <script>
 import utils from '@/utils/login'
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'AuthPage',
@@ -17,12 +17,15 @@ export default {
   computed: {
     ...mapState({
       token: state => state.token.value
+    }),
+    ...mapGetters({
+      user: 'user/getUser'
     })
   },
   mounted () {
     if (this.code === undefined) this.goLogin()
     new Promise(resolve => this.doThings(resolve))
-      .then(_ => this.$router.push({ name: 'InstructionPage' }))
+      .then(_ => this.redirect())
       .catch(_ => this.goLogin())
   },
   methods: {
@@ -40,6 +43,9 @@ export default {
       let token = this.token
       await this.getUser({ token })
       resolve()
+    },
+    redirect () {
+      this.$router.push({ name: 'InstructionPage' })
     }
   }
 }
