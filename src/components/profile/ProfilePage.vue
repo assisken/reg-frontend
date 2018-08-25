@@ -26,7 +26,7 @@
           </div>
         </nav>
       </div>
-      <main class="col-12 col-md-9 col-xl-8 pl-md-5 bd-content pb-3">
+      <main class="col-12 col-md-9 col-xl-9 pl-md-5 bd-content pb-3">
         <transition name="fade-footer" mode="out-in" @beforeLeave="beforeLeave" @enter="enter" @afterEnter="afterEnter">
           <register-page v-if="register"/>
           <router-view v-if="!(blocked || register)"/>
